@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DebtTrack - Login</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="login-page">
+
+    <div class="login-container">
+
+        <div class="login-card">
+
+            <div class="brand">
+                <div class="brand-icon">₱</div>
+                <h1>DebtTrack</h1>
+                <p>Debt Management System</p>
+            </div>
+
+            <h2>Welcome back</h2>
+
+            <p class="login-subtitle">
+                Sign in to manage your debt records
+            </p>
+
+            <form id="loginForm">
+
+                <label>Email Address</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+                <label>Password</label>
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="show-password"
+                        id="showPassword"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+                <div class="login-options">
+
+                    <label class="remember-label">
+                        <input type="checkbox" id="rememberMe">
+                        Remember me
+                    </label>
+
+                    <a href="#" id="forgotPassword">
+                        Forgot password?
+                    </a>
+
+                </div>
+
+                <button type="submit" class="login-btn">
+                    Sign In
+                </button>
+
+                <p id="loginMessage" class="message"></p>
+
+            </form>
+
+            <div class="divider">
+                <span>or</span>
+            </div>
+
+            <p class="signup-text">
+                Don't have an account?
+                <a href="#" id="showSignup">Create an account</a>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- SIGN UP MODAL -->
+
+    <div id="signupModal" class="auth-modal">
+
+        <div class="signup-card">
+
+            <button
+                class="close-auth"
+                id="closeSignup"
+                type="button"
+            >
+                ×
+            </button>
+
+            <div class="brand">
+                <div class="brand-icon">₱</div>
+
+                <h1>Create Account</h1>
+
+                <p>Join DebtTrack</p>
+            </div>
+
+            <form id="signupForm">
+
+                <label>Email Address</label>
+
+                <input
+                    type="email"
+                    id="signupEmail"
+                    placeholder="Enter your email"
+                    required
+                >
+
+                <label>Password</label>
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="signupPassword"
+                        placeholder="At least 6 characters"
+                        minlength="6"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="show-password"
+                        id="showSignupPassword"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+                <label>Confirm Password</label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm your password"
+                    minlength="6"
+                    required
+                >
+
+                <button type="submit" class="login-btn">
+                    Create Account
+                </button>
+
+                <p id="signupMessage" class="message"></p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- FORGOT PASSWORD MODAL -->
+
+    <div id="forgotModal" class="auth-modal">
+
+        <div class="signup-card">
+
+            <button
+                class="close-auth"
+                id="closeForgot"
+                type="button"
+            >
+                ×
+            </button>
+
+            <div class="brand">
+                <div class="brand-icon">🔐</div>
+
+                <h1>Reset Password</h1>
+
+                <p>We'll send a password reset link</p>
+            </div>
+
+            <form id="forgotForm">
+
+                <label>Email Address</label>
+
+                <input
+                    type="email"
+                    id="forgotEmail"
+                    placeholder="Enter your email"
+                    required
+                >
+
+                <button type="submit" class="login-btn">
+                    Send Reset Link
+                </button>
+
+                <p id="forgotMessage" class="message"></p>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script type="module" src="login.js"></script>
+
+</body>
+</html>

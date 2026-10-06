@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>DebtTrack - Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="brand-icon small">
+                ₱
+            </div>
+
+            <div>
+                <h2>DebtTrack</h2>
+                <span>Management System</span>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <button
+                class="nav-item active"
+                data-section="dashboardSection"
+            >
+                <span>🏠</span>
+                Dashboard
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="recordsSection"
+            >
+                <span>💳</span>
+                Debt Records
+            </button>
+
+            <button
+                class="nav-item"
+                data-section="reportsSection"
+            >
+                <span>📊</span>
+                Reports
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="logged-user">
+
+                <div class="user-avatar">
+                    U
+                </div>
+
+                <div class="user-info">
+
+                    <strong id="userName">
+                        User
+                    </strong>
+
+                    <small id="userEmail">
+                        Loading...
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="logout-btn"
+                id="logoutBtn"
+            >
+                🚪 Logout
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <button
+                class="menu-btn"
+                id="menuBtn"
+            >
+                ☰
+            </button>
+
+            <div>
+
+                <h1 id="pageTitle">
+                    Dashboard
+                </h1>
+
+                <p id="pageSubtitle">
+                    Overview of your debt records
+                </p>
+
+            </div>
+
+
+            <button
+                class="theme-btn"
+                id="themeBtn"
+                title="Toggle dark mode"
+            >
+                🌙
+            </button>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+
+        <section
+            id="dashboardSection"
+            class="content-section active-section"
+        >
+
+            <div class="welcome-box">
+
+                <div>
+
+                    <h2>
+                        Welcome back 👋
+                    </h2>
+
+                    <p>
+                        Here's an overview of your debt management.
+                    </p>
+
+                </div>
+
+                <button
+                    class="primary-btn"
+                    id="dashboardAddBtn"
+                >
+                    + Add New Debt
+                </button>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📋
+                    </div>
+
+                    <div>
+
+                        <span>Total Records</span>
+
+                        <h2 id="totalRecords">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        💰
+                    </div>
+
+                    <div>
+
+                        <span>Total Debt</span>
+
+                        <h2 id="totalDebt">
+                            ₱0.00
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        💵
+                    </div>
+
+                    <div>
+
+                        <span>Total Paid</span>
+
+                        <h2 id="totalPaid">
+                            ₱0.00
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📌
+                    </div>
+
+                    <div>
+
+                        <span>Remaining Balance</span>
+
+                        <h2 id="remainingBalance">
+                            ₱0.00
+                        </h2>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>Recent Debt Records</h3>
+
+                            <p>
+                                Your latest records
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="text-btn"
+                            id="viewRecordsBtn"
+                        >
+                            View All
+                        </button>
+
+                    </div>
+
+                    <div id="recentRecords">
+                        <div class="empty-state">
+                            No debt records yet.
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>Debt Status</h3>
+
+                            <p>
+                                Current payment status
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="status-summary">
+
+                        <div class="status-row">
+                            <span>
+                                <i class="status-dot paid"></i>
+                                Paid
+                            </span>
+
+                            <strong id="paidCount">
+                                0
+                            </strong>
+                        </div>
+
+                        <div class="status-row">
+                            <span>
+                                <i class="status-dot partial"></i>
+                                Partially Paid
+                            </span>
+
+                            <strong id="partialCount">
+                                0
+                            </strong>
+                        </div>
+
+                        <div class="status-row">
+                            <span>
+                                <i class="status-dot unpaid"></i>
+                                Unpaid
+                            </span>
+
+                            <strong id="unpaidCount">
+                                0
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- RECORDS -->
+
+        <section
+            id="recordsSection"
+            class="content-section"
+        >
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Debt Records
+                    </h2>
+
+                    <p>
+                        Track and manage all debt records.
+                    </p>
+
+                </div>
+
+                <button
+                    class="primary-btn"
+                    id="addDebtBtn"
+                >
+                    + Add New Debt
+                </button>
+
+            </div>
+
+
+            <div class="toolbar">
+
+                <div class="search-box">
+
+                    <span>🔍</span>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search debtor..."
+                    >
+
+                </div>
+
+
+                <select id="statusFilter">
+
+                    <option value="all">
+                        All Status
+                    </option>
+
+                    <option value="Unpaid">
+                        Unpaid
+                    </option>
+
+                    <option value="Partially Paid">
+                        Partially Paid
+                    </option>
+
+                    <option value="Paid">
+                        Paid
+                    </option>
+
+                </select>
+
+
+                <select id="sortFilter">
+
+                    <option value="newest">
+                        Newest
+                    </option>
+
+                    <option value="oldest">
+                        Oldest
+                    </option>
+
+                    <option value="highest">
+                        Highest Debt
+                    </option>
+
+                    <option value="lowest">
+                        Lowest Debt
+                    </option>
+
+                    <option value="name">
+                        Debtor Name
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>#</th>
+                            <th>Debtor</th>
+                            <th>Total Debt</th>
+                            <th>Paid</th>
+                            <th>Balance</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="debtTableBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div
+                id="emptyRecords"
+                class="empty-state hidden"
+            >
+                No debt records found.
+            </div>
+
+        </section>
+
+
+        <!-- REPORTS -->
+
+        <section
+            id="reportsSection"
+            class="content-section"
+        >
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Reports
+                    </h2>
+
+                    <p>
+                        View your debt management summary.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="report-cards">
+
+                <div class="report-card">
+
+                    <span>Total Outstanding</span>
+
+                    <strong id="reportOutstanding">
+                        ₱0.00
+                    </strong>
+
+                </div>
+
+                <div class="report-card">
+
+                    <span>Collection Rate</span>
+
+                    <strong id="collectionRate">
+                        0%
+                    </strong>
+
+                </div>
+
+                <div class="report-card">
+
+                    <span>Paid Records</span>
+
+                    <strong id="reportPaidRecords">
+                        0
+                    </strong>
+
+                </div>
+
+                <div class="report-card">
+
+                    <span>Unpaid Records</span>
+
+                    <strong id="reportUnpaidRecords">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="report-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>Debt Status Overview</h3>
+
+                            <p>
+                                Number of records by status
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div id="reportBars">
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>Financial Summary</h3>
+
+                            <p>
+                                Current financial overview
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="financial-list">
+
+                        <div>
+                            <span>Total Debt</span>
+                            <strong id="financialDebt">₱0.00</strong>
+                        </div>
+
+                        <div>
+                            <span>Total Paid</span>
+                            <strong id="financialPaid">₱0.00</strong>
+                        </div>
+
+                        <div>
+                            <span>Remaining</span>
+                            <strong id="financialRemaining">₱0.00</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ADD DEBT MODAL -->
+
+<div
+    class="modal"
+    id="debtModal"
+>
+
+    <div class="modal-card">
+
+        <button
+            class="modal-close"
+            id="closeDebtModal"
+        >
+            ×
+        </button>
+
+        <h2>Add New Debt</h2>
+
+        <p>
+            Enter the debtor's information.
+        </p>
+
+        <form id="debtForm">
+
+            <label>Debtor Name</label>
+
+            <input
+                type="text"
+                id="debtorName"
+                placeholder="Enter debtor name"
+                required
+            >
+
+            <label>Total Debt</label>
+
+            <input
+                type="number"
+                id="debtAmount"
+                placeholder="0.00"
+                min="0"
+                step="0.01"
+                required
+            >
+
+            <label>Date</label>
+
+            <input
+                type="date"
+                id="debtDate"
+                required
+            >
+
+            <button
+                type="submit"
+                class="primary-btn full-btn"
+            >
+                Add Debt
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- PAYMENT MODAL -->
+
+<div
+    class="modal"
+    id="paymentModal"
+>
+
+    <div class="modal-card">
+
+        <button
+            class="modal-close"
+            id="closePaymentModal"
+        >
+            ×
+        </button>
+
+        <h2>Make Payment</h2>
+
+        <p id="paymentDebtorName">
+            Debtor
+        </p>
+
+        <div class="payment-info">
+
+            <div>
+                <span>Total Debt</span>
+                <strong id="paymentTotal">₱0.00</strong>
+            </div>
+
+            <div>
+                <span>Current Paid</span>
+                <strong id="paymentCurrent">₱0.00</strong>
+            </div>
+
+            <div>
+                <span>Balance</span>
+                <strong id="paymentBalance">₱0.00</strong>
+            </div>
+
+        </div>
+
+        <form id="paymentForm">
+
+            <label>Payment Amount</label>
+
+            <input
+                type="number"
+                id="paymentAmount"
+                placeholder="0.00"
+                min="0.01"
+                step="0.01"
+                required
+            >
+
+            <button
+                type="submit"
+                class="primary-btn full-btn"
+            >
+                Record Payment
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- HISTORY MODAL -->
+
+<div
+    class="modal"
+    id="historyModal"
+>
+
+    <div class="modal-card">
+
+        <button
+            class="modal-close"
+            id="closeHistoryModal"
+        >
+            ×
+        </button>
+
+        <h2>Payment History</h2>
+
+        <p id="historyDebtorName">
+            Debtor
+        </p>
+
+        <div id="paymentHistory">
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- CONFIRM DELETE MODAL -->
+
+<div
+    class="modal"
+    id="deleteModal"
+>
+
+    <div class="modal-card small-modal">
+
+        <div class="confirm-icon">
+            ⚠️
+        </div>
+
+        <h2>Delete Debt Record?</h2>
+
+        <p>
+            This action cannot be undone.
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+                class="secondary-btn"
+                id="cancelDelete"
+            >
+                Cancel
+            </button>
+
+            <button
+                class="danger-btn"
+                id="confirmDelete"
+            >
+                Delete
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    id="toast"
+    class="toast"
+>
+    <span id="toastIcon">✓</span>
+    <span id="toastMessage">Success</span>
+</div>
+
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
